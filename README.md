@@ -9,3 +9,8 @@ Le gameplay se décompose en 2 phases principales :
   2. Phase de Descente : Le joueur est lancé et doit à présent atteindre une cible au sol sain et sauf lors de sa descente.
       b. On utilise les équations de la trajectoire lorsque le joueur décide de se décaler à gauche ou à droite.
 
+## Installation
+
+## Fonctionnalités
+
+## Contributeurs

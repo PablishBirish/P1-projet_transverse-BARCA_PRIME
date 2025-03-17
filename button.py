@@ -6,7 +6,7 @@ pygame.init()
 SCREEN = pygame.display.set_mode((1280, 720))
 pygame.display.set_caption("Menu")
 
-BG = pygame.image.load("assets/Background.png")
+BG = pygame.image.load("assets/thai3.webp")
 
 
 def get_font(size):
@@ -14,22 +14,31 @@ def get_font(size):
 
 
 def play():
+    BG = pygame.image.load("assets/bg.jpg")
+
     while True:
         PLAY_MOUSE_POS = pygame.mouse.get_pos()
 
         SCREEN.fill("black")
+        SCREEN.blit(BG, (0, 0))  # Afficher l'image du fond à la position (0, 0)
 
         PLAY_TEXT = get_font(45).render("Ou veux tu aller?", True, "White")
         PLAY_RECT = PLAY_TEXT.get_rect(center=(640, 150))
         SCREEN.blit(PLAY_TEXT, PLAY_RECT)
-        PLAY_TEXT1 = get_font(45).render("MIAMI", True, "White")
-        PLAY_RECT_1 = PLAY_TEXT1.get_rect(center=(640, 250))
-        SCREEN.blit(PLAY_TEXT1, PLAY_RECT_1)
-        PLAY_TEXT1 = get_font(45).render("Busan", True, "White")
+        PLAY_TEXT1 = get_font(45).render("Himalaya", True, "White")
         PLAY_RECT_1 = PLAY_TEXT1.get_rect(center=(640, 250))
         SCREEN.blit(PLAY_TEXT1, PLAY_RECT_1)
 
-        PLAY_BACK = Button(image=None, pos=(640, 460),
+        PLAY_TEXT2 = get_font(45).render("Busan", True, "White")
+        PLAY_RECT_2 = PLAY_TEXT2.get_rect(center=(640, 350))
+        SCREEN.blit(PLAY_TEXT2, PLAY_RECT_2)
+
+        PLAY_TEXT3 = get_font(45).render("Moon", True, "White")
+        PLAY_RECT_3 = PLAY_TEXT3.get_rect(center=(640, 450))  # Utilisez PLAY_TEXT3 ici
+        SCREEN.blit(PLAY_TEXT3, PLAY_RECT_3)
+
+
+        PLAY_BACK = Button(image=None, pos=(640, 560),
                            text_input="BACK", font=get_font(75), base_color="White", hovering_color="Green")
 
         PLAY_BACK.changeColor(PLAY_MOUSE_POS)
@@ -52,7 +61,7 @@ def options():
 
         SCREEN.fill("white")
 
-        OPTIONS_TEXT = get_font(45).render("This is the OPTIONS screen.", True, "Black")
+        OPTIONS_TEXT = get_font(45).render("Options there", True, "Black")
         OPTIONS_RECT = OPTIONS_TEXT.get_rect(center=(640, 260))
         SCREEN.blit(OPTIONS_TEXT, OPTIONS_RECT)
 

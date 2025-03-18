@@ -1,14 +1,19 @@
 import pygame, sys
-
-
 pygame.init()
-
+for game in pygame.event.get():
 SCREEN = pygame.display.set_mode((1280, 720))
 pygame.display.set_caption("Menu")
 
 BG = pygame.image.load("assets/thai3.webp")
 
+def busan():
+    game = Game()  # Crée une instance de Game
+    game.run()  # Lance le jeu
 
+
+def lune():
+    game = Game()  # Crée une instance de Game
+    game.run()  # Lance le jeu
 def get_font(size):
     return pygame.font.Font("assets/font.ttf", size)
 
@@ -25,20 +30,18 @@ def play():
         PLAY_TEXT = get_font(45).render("Ou veux tu aller?", True, "White")
         PLAY_RECT = PLAY_TEXT.get_rect(center=(640, 150))
         SCREEN.blit(PLAY_TEXT, PLAY_RECT)
-        PLAY_TEXT1 = get_font(45).render("Himalaya", True, "White")
-        PLAY_RECT_1 = PLAY_TEXT1.get_rect(center=(640, 250))
-        SCREEN.blit(PLAY_TEXT1, PLAY_RECT_1)
+
 
         PLAY_TEXT2 = get_font(45).render("Busan", True, "White")
-        PLAY_RECT_2 = PLAY_TEXT2.get_rect(center=(640, 350))
+        PLAY_RECT_2 = PLAY_TEXT2.get_rect(center=(640, 250))
         SCREEN.blit(PLAY_TEXT2, PLAY_RECT_2)
 
         PLAY_TEXT3 = get_font(45).render("Moon", True, "White")
-        PLAY_RECT_3 = PLAY_TEXT3.get_rect(center=(640, 450))  # Utilisez PLAY_TEXT3 ici
+        PLAY_RECT_3 = PLAY_TEXT3.get_rect(center=(640, 350))  # Utilisez PLAY_TEXT3 ici
         SCREEN.blit(PLAY_TEXT3, PLAY_RECT_3)
 
 
-        PLAY_BACK = Button(image=None, pos=(640, 560),
+        PLAY_BACK = Button(image=None, pos=(640, 500),
                            text_input="BACK", font=get_font(75), base_color="White", hovering_color="Green")
 
         PLAY_BACK.changeColor(PLAY_MOUSE_POS)
@@ -53,6 +56,16 @@ def play():
                     main_menu()
 
         pygame.display.update()
+        BUSAN_BUTTON = Button(image=None, pos=(640, 300),
+                              text_input="BUSAN", font=get_font(45), base_color="White", hovering_color="Green")
+
+        LUNE_BUTTON = Button(image=None, pos=(640, 400),
+                             text_input="LA LUNE", font=get_font(45), base_color="White", hovering_color="Green")
+        if BUSAN_BUTTON.checkForInput(PLAY_MOUSE_POS):
+            busan()
+
+        if LUNE_BUTTON.checkForInput(PLAY_MOUSE_POS):
+            lune()
 
 
 def options():
@@ -61,9 +74,19 @@ def options():
 
         SCREEN.fill("white")
 
-        OPTIONS_TEXT = get_font(45).render("Options there", True, "Black")
-        OPTIONS_RECT = OPTIONS_TEXT.get_rect(center=(640, 260))
+        OPTIONS_TEXT = get_font(30).render("If you wanna go right press D", True, "Black")
+        OPTIONS_RECT = OPTIONS_TEXT.get_rect(center=(640, 100))
         SCREEN.blit(OPTIONS_TEXT, OPTIONS_RECT)
+
+        OPTIONS_TEXT1 = get_font(30).render("If you wanna go left press Q", True, "Black")
+        OPTIONS_RECT1 = OPTIONS_TEXT.get_rect(center=(640, 150))
+        SCREEN.blit(OPTIONS_TEXT1, OPTIONS_RECT1)
+        OPTIONS_TEXT3 = get_font(30).render("You gonna fall automaticly", True, "Black")
+        OPTIONS_RECT3 = OPTIONS_TEXT.get_rect(center=(640, 200))
+        SCREEN.blit(OPTIONS_TEXT3, OPTIONS_RECT3)
+        OPTIONS_TEXT4 = get_font(30).render("Dodge everything", True, "Black")
+        OPTIONS_RECT4 = OPTIONS_TEXT.get_rect(center=(840, 250))
+        SCREEN.blit(OPTIONS_TEXT4, OPTIONS_RECT4)
 
         OPTIONS_BACK = Button(image=None, pos=(640, 460),
                               text_input="BACK", font=get_font(75), base_color="Black", hovering_color="Green")

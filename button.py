@@ -1,18 +1,18 @@
 import pygame, sys
 pygame.init()
 for game in pygame.event.get():
-SCREEN = pygame.display.set_mode((1280, 720))
-pygame.display.set_caption("Menu")
+    SCREEN = pygame.display.set_mode((1280, 720))
+    pygame.display.set_caption("Menu")
 
-BG = pygame.image.load("assets/thai3.webp")
+    BG = pygame.image.load("assets/thai3.webp")
 
 def busan():
-    game = Game()  # Crée une instance de Game
+    game = game()  # Crée une instance de Game
     game.run()  # Lance le jeu
 
 
 def lune():
-    game = Game()  # Crée une instance de Game
+    game = game()  # Crée une instance de Game
     game.run()  # Lance le jeu
 def get_font(size):
     return pygame.font.Font("assets/font.ttf", size)

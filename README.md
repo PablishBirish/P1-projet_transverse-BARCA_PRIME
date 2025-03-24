@@ -1,5 +1,5 @@
 # P1-projet_transverse-BIRAN-
-Vous êtes un parachutiste,
+Dans le cadre de notre projet transverse en première année à l'EFREI, nous avons l'opportunité de réaliser un jeu vidéo en 2D de A à Z en Python à l'aide du module Pygame. 
 
 ## Description du Jeu
 Le joueur incarne un parachutiste, qui s’élance dans le vide depuis un hélicoptère/avion dans le but d’atteindre une cible au sol. Cependant le ciel contient des obstacles, pouvant entraîner la mort du parachutiste et donc la fin de la partie. 
@@ -16,3 +16,8 @@ Avant toute exécution, veillez à bien avoir installé **Python 3.13** mais ég
 ## Fonctionnalités
 
 ## Contributeurs
+- Ashwin KUGARUBAN : *ashwin.kugaruban@efrei.net (Coach)*
+- Pablo BIRAN : *pablo.biran@efrei.net*
+- Minh LE : *minh.le@efrei.net*
+- Thibault DOMMES : *thibault.dommes@efrei.net*
+- Mathieu HA : *mathieu.ha@efrei.net*

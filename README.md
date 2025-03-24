@@ -1,5 +1,5 @@
 # P1-projet_transverse-BIRAN-
-Vous êtes un parachutiste,
+Le joueur incarne un parachutiste, qui s’élance dans le vide depuis un hélicoptère/avion dans le but d’atteindre une cible au sol. Cependant le ciel contient des obstacles, pouvant entraîner la mort du parachutiste et donc la fin de la partie. 
 
 ## Description du Jeu
 Le joueur incarne un parachutiste, qui s’élance dans le vide depuis un hélicoptère/avion dans le but d’atteindre une cible au sol. Cependant le ciel contient des obstacles, pouvant entraîner la mort du parachutiste et donc la fin de la partie. 

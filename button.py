@@ -11,7 +11,7 @@ def get_font(size):
 
 
 def play():
-    BG = pygame.image.load("assets/bg.jpg")
+    BG = pygame.image.load("assets/az.png")
 
     while True:
         PLAY_MOUSE_POS = pygame.mouse.get_pos()

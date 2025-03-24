@@ -11,8 +11,8 @@ pygame.display.set_caption("Ashgoat")
 # Charger l'image de fond
 background = pygame.image.load('assets/fond.png')
 
-# Importer la classe Game (elle doit être définie quelque part)
-from Game import Game  # Assurez-vous que le fichier game.py existe avec la classe Game
+
+from Game import Game
 
 game = Game()
 running = True

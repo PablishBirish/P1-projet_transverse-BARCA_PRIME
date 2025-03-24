@@ -48,7 +48,7 @@ def options():
         OPTIONS_TEXT3 = get_font(30).render("You gonna fall automaticly", True, "Black")
         OPTIONS_RECT3 = OPTIONS_TEXT.get_rect(center=(640, 200))
         SCREEN.blit(OPTIONS_TEXT3, OPTIONS_RECT3)
-        OPTIONS_TEXT4 = get_font(30).render("Dodge everything", True, "Black")
+        OPTIONS_TEXT4 = get_font(30).render("Dodge everything and GL", True, "Black")
         OPTIONS_RECT4 = OPTIONS_TEXT.get_rect(center=(840, 250))
         SCREEN.blit(OPTIONS_TEXT4, OPTIONS_RECT4)
 

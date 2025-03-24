@@ -12,13 +12,13 @@ Le gameplay se décompose en 2 phases principales :
 
 ## Installation
 Avant toute exécution, veillez à bien avoir installé **Python 3.13** ainsi que la version correspondante du module **PyGame**.
-### Python 3.13
+### > Python 3.13
 Avant d'installer PyGame, il est nécessaire d'installer la version 3.13 de Python.
 
 1. Rendez-vous sur le site officiel : https://www.python.org/downloads/
 2. Téléchargez la version 3.13 de Python
 
-### PyGame
+### > PyGame
 
 ## Fonctionnalités
 

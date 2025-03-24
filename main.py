@@ -19,10 +19,15 @@ def get_font(size):
 
 def launch_game(destination):
     """Lancer le jeu dans une nouvelle fenêtre avec le bon niveau (Busan ou Moon)."""
-    if destination == "Busan":
-        subprocess.Popen(["python", "game1.py"])  # Ouvre game1.py
-    elif destination == "Moon":
-        subprocess.Popen(["python", "game2.py"])  # Ouvre game2.py (à créer si nécessaire)
+
+    def launch_game(destination):
+        """Lancer le jeu dans une nouvelle fenêtre avec le bon niveau (Busan ou Moon)."""
+        if destination == "Busan":
+            subprocess.Popen(["python", "main1.py"])  # Lance main1.py (ton script)
+
+        elif destination == "Moon":
+            subprocess.Popen(["python", "game2.py"])  # Ouvre game2.py (si nécessaire)
+
 
         BUSAN_BUTTON = Button(image=None, pos=(640, 300),
                               text_input="BUSAN", font=get_font(45), base_color="White", hovering_color="Green")

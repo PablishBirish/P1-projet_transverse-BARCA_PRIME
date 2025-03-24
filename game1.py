@@ -12,7 +12,7 @@ pygame.display.set_caption("Ashgoat")
 background = pygame.image.load('assets/fond.png')
 
 # Importer la classe Game (elle doit être définie quelque part)
-from game import Game  # Assurez-vous que le fichier game.py existe avec la classe Game
+from Game import Game  # Assurez-vous que le fichier game.py existe avec la classe Game
 
 game = Game()
 running = True
@@ -36,4 +36,3 @@ while running:
         elif event.type == pygame.KEYUP:
             game.pressed[event.key] = False
 
-pygame.quit()

@@ -33,13 +33,3 @@ while running:
            game.pressed[event.key] = True
         elif event.type == pygame.KEYUP:
             game.pressed[event.key] = False
-
-
-
-if __name__ == "__main__":
-    pygame.init()
-    game = Game()
-    game.run()
-
-pygame.quit()
-

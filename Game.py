@@ -9,6 +9,7 @@ class Game :
         screen = pygame.display.set_mode((1280, 720))
 
         # Mise en place de la fenêtre
+        pygame.display.set_mode((1773, 1072))  # On délimite la taille de la fenêtre
         pygame.display.set_caption("Projet Transverse - V1")  # On donne un nom à la fenêtre
         self.player = Player()
         self.pressed = {

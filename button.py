@@ -4,16 +4,8 @@ for game in pygame.event.get():
     SCREEN = pygame.display.set_mode((1280, 720))
     pygame.display.set_caption("Menu")
 
-    BG = pygame.image.load("assets/thai3.webp")
+    BG = pygame.image.load("assets/fond.png")
 
-def busan():
-    game = game()  # Crée une instance de Game
-    game.run()  # Lance le jeu
-
-
-def lune():
-    game = game()  # Crée une instance de Game
-    game.run()  # Lance le jeu
 def get_font(size):
     return pygame.font.Font("assets/font.ttf", size)
 
@@ -61,11 +53,7 @@ def play():
 
         LUNE_BUTTON = Button(image=None, pos=(640, 400),
                              text_input="LA LUNE", font=get_font(45), base_color="White", hovering_color="Green")
-        if BUSAN_BUTTON.checkForInput(PLAY_MOUSE_POS):
-            busan()
 
-        if LUNE_BUTTON.checkForInput(PLAY_MOUSE_POS):
-            lune()
 
 
 def options():

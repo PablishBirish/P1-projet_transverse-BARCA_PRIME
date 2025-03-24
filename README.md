@@ -16,3 +16,8 @@ Avant toute exécution, veillez à bien avoir installé **Python 3.13** mais ég
 ## Fonctionnalités
 
 ## Contributeurs
+- Ashwin KUGARUBAN : *ashwin.kugaruban@efrei.net (Coach)*
+- Pablo BIRAN : *pablo.biran@efrei.net*
+- Minh LE : *minh.le@efrei.net*
+- Thibault DOMMES : *thibault.dommes@efrei.net*
+- Mathieu HA : *mathieu.ha@efrei.net*

@@ -4,7 +4,7 @@ import sys
 pygame.init()
 
 # Paramètres de la fenêtre
-WIDTH, HEIGHT = 960, 540
+WIDTH, HEIGHT = 1280, 720
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Ashgoat")
 

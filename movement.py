@@ -1,22 +1,7 @@
-import pygame
-import sys
-
-pygame.init()
-
-# Paramètres de la fenêtre
-WIDTH, HEIGHT = 1280, 720
-screen = pygame.display.set_mode((WIDTH, HEIGHT))
-pygame.display.set_caption("Ashgoat")
-
-# Charger l'image de fond
-background = pygame.image.load('assets/fond.png')
 
 
-from Game import Game
-
-game = Game()
-running = True
-
+"""
+Permet de faire les déplacements de droite a gauche
 while running:
     screen.blit(background, (0, -200))
     screen.blit(game.player.image, game.player.rect)
@@ -35,4 +20,4 @@ while running:
             game.pressed[event.key] = True
         elif event.type == pygame.KEYUP:
             game.pressed[event.key] = False
-
+"""

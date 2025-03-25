@@ -9,17 +9,21 @@ WIDTH, HEIGHT = 1280, 720
 SCREEN = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Menu")
 
-# Charger l’image de fond
+# Chargement des images
 BG = pygame.image.load("assets/fond.png")
+fond_busan = pygame.image.load("assets/fondbusan2.webp")  # Image de Busan
 
 def get_font(size):
     return pygame.font.Font("assets/font.ttf", size)
 
-def show_black_screen():
-    """Affiche un écran noir jusqu'à ce que l'utilisateur appuie sur Échap."""
+def show_black_screen(destination):
+    """Affiche l'écran correspondant à la destination."""
     running = True
     while running:
-        SCREEN.fill("black")  # Met l’écran en noir
+        if destination == "Busan":
+            SCREEN.blit(fond_busan, (0, 0))  # Affiche l'image de Busan
+        else:
+            SCREEN.fill("black")  # Affiche un écran noir pour les autres destinations
 
         pygame.display.update()
 
@@ -28,7 +32,7 @@ def show_black_screen():
                 pygame.quit()
                 sys.exit()
             if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_ESCAPE:  # Retour au menu principal avec "Échap"
+                if event.key == pygame.K_ESCAPE:  # Retour au menu principal avec Échap
                     return
 
 def options():
@@ -99,9 +103,9 @@ def play():
                 sys.exit()
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if BUSAN_BUTTON.checkForInput(PLAY_MOUSE_POS):
-                    show_black_screen()  # Afficher l'écran noir pour Busan
+                    show_black_screen("Busan")  # Afficher l’image de Busan
                 if MOON_BUTTON.checkForInput(PLAY_MOUSE_POS):
-                    show_black_screen()  # Afficher l'écran noir pour Moon
+                    show_black_screen("Moon")  # Afficher un écran noir
                 if PLAY_BACK.checkForInput(PLAY_MOUSE_POS):
                     return
 

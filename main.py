@@ -1,5 +1,4 @@
-import pygame
-import sys
+import pygame, sys, chute_libre, random
 from button import Button
 
 pygame.init()
@@ -7,33 +6,62 @@ pygame.init()
 # Paramètres de la fenêtre
 WIDTH, HEIGHT = 1280, 720
 SCREEN = pygame.display.set_mode((WIDTH, HEIGHT))
+clock = pygame.time.Clock()
 pygame.display.set_caption("Menu")
 
 # Chargement des images
 BG = pygame.image.load("assets/fond.png")
 fond_busan = pygame.image.load("assets/fondbusan2.webp")  # Image de Busan
 
+
 def get_font(size):
     return pygame.font.Font("assets/font.ttf", size)
+
 
 def show_black_screen(destination):
     """Affiche l'écran correspondant à la destination."""
     running = True
+    start_time = pygame.time.get_ticks()
+    obs = {}
+    first_run = True
     while running:
         if destination == "Busan":
+            gravite = 15
+            name_obstacle = ["assets/obstacle1.png", "assets/obstacle2.png"]
             SCREEN.blit(fond_busan, (0, 0))  # Affiche l'image de Busan
         else:
+            gravite = 5
+            name_obstacle = ["assets/obstacle_lune_1.png"]
             SCREEN.fill("black")  # Affiche un écran noir pour les autres destinations
 
+        current_time = pygame.time.get_ticks()
+        if current_time - start_time > 500 or first_run:
+            obs[f"obstacle_{len(obs)}"] = [chute_libre.display_obstacle(random.choice(name_obstacle)), 720]
+            first_run = False
+            start_time = current_time
+
+        avion_trop_haut = [key for key in obs if obs[key][1] <= -200]
+        for key in avion_trop_haut:
+            del obs[key]
+        obs = {f"obstacle_{i}": v for i, v in enumerate(obs.values())}
+        for i in range(len(obs)):
+            obstacle, pos_x = obs[f"obstacle_{i}"][0]
+            pos_y = obs[f"obstacle_{i}"][1]
+            SCREEN.blit(obstacle, (pos_x, pos_y))
+            obs[f"obstacle_{i}"][1] -= gravite
+
         pygame.display.update()
+        clock.tick(60)
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
+                print(obs)
                 pygame.quit()
                 sys.exit()
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_ESCAPE:  # Retour au menu principal avec Échap
                     return
+
 
 def options():
     """Affiche les options du jeu."""
@@ -68,6 +96,7 @@ def options():
                     return
 
         pygame.display.update()
+
 
 def play():
     """Affiche l'écran de sélection des niveaux (Busan / Moon)."""
@@ -111,6 +140,7 @@ def play():
 
         pygame.display.update()
 
+
 def main_menu():
     """Affiche le menu principal."""
     while True:
@@ -146,6 +176,7 @@ def main_menu():
                     sys.exit()
 
         pygame.display.update()
+
 
 # Lancer le menu
 main_menu()

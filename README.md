@@ -30,8 +30,17 @@ Le joueur aura l'opportunité de jouer sur **3 cartes/mondes** différents :
   - Caractéristiques
 
 ## Contributeurs
-- Ashwin KUGARUBAN : *ashwin.kugaruban@efrei.net (Coach)*
+- Ashwin KUGARUBAN : *ashwin.kugaruban@efrei.net*
+  - Coach/Leader
+  - Cartes
 - Pablo BIRAN : *pablo.biran@efrei.net*
+  - Git/Github
+  - Equations de la trajectoire (phase lancée)
 - Minh LE : *minh.le@efrei.net*
+  - Skins/Tenues
 - Thibault DOMMES : *thibault.dommes@efrei.net*
+  - Ecran d'accueil
+  - Trajectoire (phase descente)
 - Mathieu HA : *mathieu.ha@efrei.net*
+  - Cartes
+  - Ecran d'accueil

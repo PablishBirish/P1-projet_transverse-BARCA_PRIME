@@ -19,6 +19,15 @@ Avant d'installer PyGame, il est nécessaire d'installer la version 3.13 de Pyth
 ### > PyGame
 
 ## Fonctionnalités
+### Différents skins/tenues à porter
+### Différents monde où jouer
+Le joueur aura l'opportunité de jouer sur **3 cartes/mondes** différents :
+- Carte 1
+  - Caractéristiques
+- Carte 2
+  - Caractéristiques
+- Carte 3
+  - Caractéristiques
 
 ## Contributeurs
 - Ashwin KUGARUBAN : *ashwin.kugaruban@efrei.net (Coach)*

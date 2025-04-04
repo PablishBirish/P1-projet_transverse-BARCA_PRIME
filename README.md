@@ -6,15 +6,7 @@ Le joueur incarne un parachutiste, qui s’élance dans le vide depuis un hélic
 
 Le gameplay se décompose en 2 phases principales : 
   1. **Phase de Lancée** : Le joueur a la possibilité de jauger lui même la force et l'angle du lancer, il doit bien choisir vers où s’élancer car il devra par la suite esquiver les obstacles de la zone.
-
-       a. On utilise les équations de la trajectoire lorsque le parachutiste est lancé.
-
-       b. On néglige les frottements de l'air, le parachutiste est en chute libre.
   3. **Phase de Descente** : Le joueur a été lancé et a ouvert son parachute, il doit à présent atteindre une cible au sol sain et sauf sous peine de Game Over.
-
-       a. On utilise les équations de la trajectoire lorsque le joueur décide de se décaler à gauche ou à droite.
-
-       b. On néglige les frottements de l'air, le parachutiste est en chute libre.
 
 ## Installation
 Avant toute exécution, veillez à bien avoir installé **Python 3.13** ainsi que la version correspondante du module **PyGame**.

@@ -1,7 +1,7 @@
 # test test test te
 
 import pygame
-from player import Player
+from player player
 
 class Game :
     def __init__ (self):

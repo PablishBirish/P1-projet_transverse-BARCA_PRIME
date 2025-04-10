@@ -1,7 +1,7 @@
 
 
 """
-Permet de faire les déplacements de droite a gauche  (q,d)
+Permet de faire les déplacements de droite a gauche  (q,d) jdjdjd
 """
 
 import pygame
@@ -72,4 +72,3 @@ while running:
             game.pressed[event.key] = True
         elif event.type == pygame.KEYUP:
             game.pressed[event.key] = False
-

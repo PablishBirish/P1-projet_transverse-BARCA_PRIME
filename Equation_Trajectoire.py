@@ -22,7 +22,7 @@ camera_x = 0  # Décalage horizontal de la caméra
 parachute_deployed = False  # Vrai ou faux si le parachute est déployé ou non
 
 # Position initiale du parachutiste (en pixels)
-x, y = 100, HEIGHT - 100
+x, y = 125, HEIGHT - 282
 vx, vy = 0, 0   # paramètres initiales de la vitesse sur les deux axes
 
 # Couleurs (tempo)
@@ -119,8 +119,8 @@ while running:
         draw_power_bar(screen, power)
     pygame.draw.circle(screen, BLUE if not parachute_deployed else GREEN, (int(x - camera_x), int(y)), 10)
 
-    mortier_img = pygame.image.load("mortier.png").convert_alpha()
-    screen.blit(mortier_img, (150,150))
+    mortier_img = pygame.image.load("assets\Mortier_petit.png")
+    screen.blit(mortier_img, (50,415))
     
     
     # Affichage des commandes pour le joueur

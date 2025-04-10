@@ -98,6 +98,8 @@ while running:
             vx = power * math.cos(angle_rad)  # équations de la vitesse (physique)
             vy = - power * math.sin(angle_rad)  # équations de la vitesse (physique)
             launched = True   # Le parachutiste est maintenant lancé
+        if keys[pygame.K_ESCAPE]:
+            running = False
 
     if launched and keys[pygame.K_p]:
         parachute_deployed = True

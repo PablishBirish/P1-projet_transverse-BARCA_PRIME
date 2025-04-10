@@ -119,6 +119,10 @@ while running:
         draw_power_bar(screen, power)
     pygame.draw.circle(screen, BLUE if not parachute_deployed else GREEN, (int(x - camera_x), int(y)), 10)
 
+    mortier_img = pygame.image.load("mortier.png").convert_alpha()
+    screen.blit(mortier_img, (150,150))
+    
+    
     # Affichage des commandes pour le joueur
     txt = font.render(f"Angle : {angle_deg}° | Vitesse : {power:.1f} m/s", True, BLACK)
     txt2 = font.render("ECHAP pour quitter", True, BLACK)
@@ -129,6 +133,7 @@ while running:
     else:
         screen.blit(font.render("P pour déployer le parachute", True, BLACK), (10, 35))
 
+    
     pygame.display.flip()
 
 pygame.quit()

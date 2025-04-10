@@ -1,12 +1,13 @@
 #Musique de jeu
-
-def set_mode(size=00, flags=0, display=0) :
-    screen.fill((0, 0, 0))
+import pygame
+pygame.mixer.init()
+#def set_mode(size=00, flags=0, display=0) :
+  #  screen.fill((0, 0, 0))
 
 etat = "menu"
-musique_menu = "BroForce.mp3"
+musique_menu = "assets/BroForce.mp3"
 pygame.mixer.music.load(musique_menu)
-musique_jeu = "Corail.mp3"
+musique_jeu = "assets/Corail.mp3"
 
 def jouer_musique(fichier):
     pygame.mixer.music.load(fichier)

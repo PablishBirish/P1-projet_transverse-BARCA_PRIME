@@ -14,7 +14,7 @@ class Game :
         self.player = Player()
         self.pressed = {
             "droite": True,
-            "gauche": False
+            "gauche": False,}
 
     def run (self):
         running = True  # Cette variable contient l'état de fonctionnement du jeu ('True' s'il tourne, 'False' s'il ne tourne pas)
@@ -22,7 +22,6 @@ class Game :
             for event in pygame.event.get():  # On récupère la liste des évènements actifs
                 if event.type == pygame.QUIT:  # On récupère et vérifie le type d'évènement
                     running = False  # Si le joueur tente de fermer la fenêtre (le type d'évènement est le fait de quitter), le programme sort de la boucle while
-
 
 
 

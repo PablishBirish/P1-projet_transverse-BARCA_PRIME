@@ -1,27 +1,16 @@
-import pygame
-
-class Player(pygame.sprite.Sprite):
+import pygame, random
+WIDTH = 1280
+HEIGHT = 720
+BLUE = (0, 0, 255)
+class perso:
     def __init__(self):
-        super().__init__()
-        self.health =100
-        self.speed =10
-        self.image=pygame.image.load('assets/v2.png')
-        self.attack = 10
-        self.maxhealth = 100
-        self.rect = self.image.get_rect()
-        self.rect.x = 640
-        width, height = self.image.get_size()
-        new_size = (width * 8, height * 8)
+        pygame.init()
+        perso_image = pygame.image.load("assets/CHINOIS_FREURE.png")
+        obstacle_image = pygame.image.load(perso_image)
+        self.screen = pygame.display.set_mode((WIDTH, HEIGHT))
 
+        if perso_image:
+            obstacle_image = pygame.transform.scale(obstacle_image, (200, 200))
 
+    def move_perso(self):
 
-    def move_right(self):
-        self.rect.x += self.speed
-
-    def move_left(self):
-        self.rect.x -= self.speed
-
-    def update(self):
-        self.rect.y += self.speed
-        if self.rect.y > 720:
-            self.rect.y = 720

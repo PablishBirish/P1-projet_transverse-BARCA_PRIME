@@ -123,7 +123,7 @@ while running:
     txt = font.render(f"Angle : {angle_deg}° | Vitesse : {power:.1f} m/s", True, BLACK)
     txt2 = font.render("ECHAP pour quitter", True, BLACK)
     screen.blit(txt, (10, 10))
-    screen.blit(txt2, (10, 20))
+    screen.blit(txt2, (10, 60))
     if not launched:
         screen.blit(font.render("ESPACE pour lancer", True, BLACK), (10, 35))
     else:

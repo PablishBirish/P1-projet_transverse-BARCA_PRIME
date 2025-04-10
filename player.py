@@ -5,7 +5,7 @@ BLUE = (0, 0, 255)
 class perso:
     def __init__(self):
         pygame.init()
-        perso_image = pygame.image.load("assets/CHINOIS_FREURE.png")
+        perso_image = pygame.image.load("assets/Personnage_2.png")
         obstacle_image = pygame.image.load(perso_image)
         self.screen = pygame.display.set_mode((WIDTH, HEIGHT))
 

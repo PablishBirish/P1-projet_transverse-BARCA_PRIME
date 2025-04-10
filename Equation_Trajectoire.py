@@ -3,7 +3,7 @@ import math
 
 # Initialisation de PyGame et de la fenêtre de jeu
 pygame.init()
-WIDTH, HEIGHT = 1100, 800  # Dimensions de la fenêtre
+WIDTH, HEIGHT = 1100, 800
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Equation trajectoire test")
 clock = pygame.time.Clock()

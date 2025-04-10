@@ -16,10 +16,17 @@ BG = pygame.image.load("assets/fond.png")
 fond_busan = pygame.image.load("assets/fondbusan2.webp")  # Image de Busan
 fond_option = pygame.image.load("assets/fond_option.jpg")  # Image pour les options
 
+#chargement des musiques musique_menu = "assets/BroForce.mp3"
+musique_menu = "assets/BroForce.mp3"
+musique_busan = "assets/Corail.mp3"
 
 def get_font(size):
     return pygame.font.Font("assets/font.ttf", size)
 
+def jouer_musique(fichier):
+    """Joue la musique en boucle."""
+    pygame.mixer.music.load(fichier)
+    pygame.mixer.music.play(-1)  #lance musique à l'infini
 
 def show_black_screen(destination):
     """Affiche l'écran correspondant à la destination."""
@@ -33,8 +40,7 @@ def show_black_screen(destination):
             gravite = 10
             name_obstacle = ["assets/obstacle1.png", "assets/obstacle2.png"]
             SCREEN.blit(fond_busan, (0, 0))  # Affiche l'image de Busan
-            pygame.mixer.music.load("assets/Corail.mp3")
-            pygame.mixer.music.play(-1)
+            jouer_musique(musique_busan)
         else:
             gravite = 5
             name_obstacle = ["assets/obstacle_lune_1.png"]
@@ -143,6 +149,7 @@ def play():
 def main_menu():
     """Affiche le menu principal."""
     while True:
+        jouer_musique(musique_menu)
         SCREEN.blit(BG, (0, 0))
         MENU_MOUSE_POS = pygame.mouse.get_pos()
 

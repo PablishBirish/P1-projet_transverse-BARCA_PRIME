@@ -7,6 +7,7 @@ WIDTH, HEIGHT = 1280, 720
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Equation trajectoire test")
 clock = pygame.time.Clock()
+fond_busan = pygame.image.load("assets/fondbusan2.webp")
 
 # Constantes physiques qui serviront pour le calcul de la trajectoire
 g = 9.81  # constante gravitationnelle
@@ -75,7 +76,7 @@ def update_physics(x, y, vx, vy, dt, parachute):
 running = True
 while running:
     dt = clock.tick(60) / 1000  # en secondes
-    screen.fill(WHITE)
+    screen.blit(fond_busan, (0, 0))
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:

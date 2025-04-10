@@ -14,8 +14,8 @@ m = 80  # masse en kg
 k = 0.5  # coefficient de frottement
 
 # Paramètres initiaux du jeu
-angle_deg = 45  # angle de tir (en degré donc)
-power = 15  # m/s, puissance du tir (= vitesse initiale v0)
+angle_deg = 45  # angle de tir 
+power = 15  # m/s
 launched = False  # Vrai ou faux si le parachutiste est lancé ou non
 camera_x = 0  # Décalage horizontal de la caméra
 parachute_deployed = False  # Vrai ou faux si le parachute est déployé ou non
@@ -37,29 +37,24 @@ font = pygame.font.SysFont(None, 24)
 # Dessin de la flèche qui représente la puissance du tir + son angle
 def draw_arrow(surface, x, y, angle_deg, power, camera_x):
     angle_rad = math.radians(angle_deg)  # convertie l'angle en radians, nécessaire pour utiliser ensuite math.cos(angle)
-    length = power * 10  # Multipliée par 10 pour être visible à l'écran (exemple : power = 10 => length = 100)
-    end_x = x + length * math.cos(angle_rad)  # définie la fin de la flèche (axe x) en fonction de l'origine, de sa longueur et de l'angle de tir (en radians)
-    end_y = y - length * math.sin(angle_rad)  # définie la fin de la flèche (axe y) en fonction de l'origine, de sa longueur et de l'angle de tir (en radians)
+    length = power * 10  # Multipliée par 10 pour être visible à l'écran
+    end_x = x + length * math.cos(angle_rad)  # Fin de la flèche en fonction de : longueur + origine + angle
+    end_y = y - length * math.sin(angle_rad)  # Fin de la flèche en fonction de : longueur + origine + angle
     pygame.draw.line(surface, RED, (x - camera_x, y), (end_x - camera_x, end_y), 4)  # Dessine un trait rouge entre (x; y) et (end_x; end_y)
 
 # Dessin de la jauge indicatrice de la puissance du tir
 def draw_power_bar(surface, power):
-    # surface la surface d'affichage
-    # power la puissance de tir
     pygame.draw.rect(surface, BLACK, (50, HEIGHT - 40, 300, 20), 2)  # Dessine le contour de la jauge (un rectangle)
     pygame.draw.rect(surface, GREEN, (50, HEIGHT - 40, power / 30 * 300, 20))  # Remplie la jauge en fonction de la puissance de tir
         # On utilise une règle de 3, le maximum de puissance est 30 soit 300 pixels sur la jauge
 
 # Met à jour régulièrement la physique du parachutiste pour recréer une chute réaliste
 def update_physics(x, y, vx, vy, dt, parachute):
-    # x et y les coordonées du parachutiste (après ou avant lancement)
-    # vx et vy les vitesses du parachutiste sur les axes x et y
-    # parachute indique si le parachute est ouvert ou non
-
-    # Forces : poids + frottements (2e loi de Newton)
-    ax = - (k / m) * vx  # Accélération sur l'axe x
-    ay = g - (k / m) * vy  # Accélération sur l'axe y
-    if parachute == True :  # Vérification régulière du parachute (s'il est ouvert ou non)
+    # Forces (x) : frottements (2e loi de Newton)
+    ax = - (k / m) * vx
+    # Forces (y) : poids + frottements (2e loi de Newton)
+    ay = g - (k / m) * vy
+    if parachute == True :
         ax *= 5  # Amplification de la résistance de l'air sur l'axe x (à cause du parachute)
         ay *= 5  # Amplification de la résistance de l'air l'axe y (à cause du parachute)
 
@@ -89,19 +84,19 @@ while running:
     # Contrôles avant lancement
     keys = pygame.key.get_pressed()
     if not launched:
-        if keys[pygame.K_LEFT] and angle_deg > 0:
+        if keys[pygame.K_LEFT] and angle_deg > 0:    # Si le joueur presse la flèche directionnelle gauche
             angle_deg -= 1
-        if keys[pygame.K_RIGHT] and angle_deg < 80:
+        if keys[pygame.K_RIGHT] and angle_deg < 80:    # Si le joueur presse la flèche directionnelle droite
             angle_deg += 1
-        if keys[pygame.K_UP] and power < 30:
+        if keys[pygame.K_UP] and power < 30:     # Si le joueur presse la flèche directionnelle haut
             power += 0.5
-        if keys[pygame.K_DOWN] and power > 0:
+        if keys[pygame.K_DOWN] and power > 0:    # Si le joueur presse la flèche directionnelle bas
             power -= 0.5
-        if keys[pygame.K_SPACE]:
+        if keys[pygame.K_SPACE]:    # Si le joueur presse la touche espace
             angle_rad = math.radians(angle_deg)
-            vx = power * math.cos(angle_rad)
-            vy = - power * math.sin(angle_rad)
-            launched = True
+            vx = power * math.cos(angle_rad)  # équations de la vitesse (physique)
+            vy = - power * math.sin(angle_rad)  # équations de la vitesse (physique)
+            launched = True   # Le parachutiste est maintenant lancé
 
     if launched and keys[pygame.K_p]:
         parachute_deployed = True

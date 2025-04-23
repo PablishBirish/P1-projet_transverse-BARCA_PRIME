@@ -198,3 +198,4 @@ def main_menu():
 # Lancement du jeu
 main_menu()
 pygame.quit()
+

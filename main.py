@@ -1,8 +1,7 @@
-import pygame, sys, chute_libre, random
+import pygame, sys, chute_libre, random, player
 from button import Button
 
-
-#permet initialiser
+# permet initialiser
 pygame.init()
 pygame.mixer.init()
 # Paramètres de la fenêtre
@@ -14,19 +13,24 @@ pygame.display.set_caption("Menu")
 # Chargement des images
 BG = pygame.image.load("assets/fond.png")
 fond_busan = pygame.image.load("assets/fondbusan2.webp")  # Image de Busan
+fond_moon = pygame.image.load("assets/fond moon.png").convert()
+fond_moon = pygame.transform.scale(fond_moon, (WIDTH, HEIGHT))  # Image de la Lune
 fond_option = pygame.image.load("assets/fond_option.jpg")  # Image pour les options
 
-#chargement des musiques musique_menu = "assets/BroForce.mp3"
+# chargement des musiques musique_menu = "assets/BroForce.mp3"
 musique_menu = "assets/BroForce.mp3"
 musique_busan = "assets/Corail.mp3"
+
 
 def get_font(size):
     return pygame.font.Font("assets/font.ttf", size)
 
+
 def jouer_musique(fichier):
     """Joue la musique en boucle."""
     pygame.mixer.music.load(fichier)
-    pygame.mixer.music.play(-1)  #lance musique à l'infini
+    pygame.mixer.music.play(-1)  # lance musique à l'infini
+
 
 def show_black_screen(destination):
     """Affiche l'écran correspondant à la destination."""
@@ -34,6 +38,7 @@ def show_black_screen(destination):
     start_time = pygame.time.get_ticks()
     obs = {}
     first_run = True
+    dx, dy = WIDTH // 2, HEIGHT // 4
 
     while running:
         if destination == "Busan":
@@ -44,7 +49,10 @@ def show_black_screen(destination):
         else:
             gravite = 5
             name_obstacle = ["assets/obstacle_lune_1.png"]
-            SCREEN.fill("black")  # Affiche un écran noir pour les autres destinations
+            SCREEN.blit(fond_moon, (0, 0))  # fond de la lune
+
+        perso = player.perso()
+        SCREEN.blit(perso, (dx, dy))
 
         current_time = pygame.time.get_ticks()
         if current_time - start_time > 500 or first_run:
@@ -61,7 +69,23 @@ def show_black_screen(destination):
             pos_y = obs[f"obstacle_{i}"][1]
             SCREEN.blit(obstacle, (pos_x, pos_y))
             obs[f"obstacle_{i}"][1] -= gravite
+            perso_mask = pygame.mask.from_surface(perso)
+            obstacle_mask = pygame.mask.from_surface(obstacle)
 
+            offset = (pos_x - dx, pos_y - dy)
+            if perso_mask.overlap(obstacle_mask, offset):
+                pygame.display.update()
+                return
+
+        keys = pygame.key.get_pressed()
+        if keys[pygame.K_d]:
+            dx += 10
+        elif keys[pygame.K_q]:
+            dx -= 10
+        elif keys[pygame.K_z]:
+            dy -= 2
+        elif keys[pygame.K_s]:
+            dy += 2
         pygame.display.update()
         clock.tick(60)
 

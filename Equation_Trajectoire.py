@@ -1,29 +1,14 @@
 import pygame
 import math
+import player
 
 # Initialisation de PyGame et de la fenêtre de jeu
-pygame.init()
 WIDTH, HEIGHT = 1280, 720
-screen = pygame.display.set_mode((WIDTH, HEIGHT))
-pygame.display.set_caption("Equation trajectoire test")
-clock = pygame.time.Clock()
-fond_busan = pygame.image.load("assets/fondbusan2.webp")
 
 # Constantes physiques qui serviront pour le calcul de la trajectoire
 g = 9.81  # constante gravitationnelle
 m = 80  # masse en kg
 k = 0.5  # coefficient de frottement
-
-# Paramètres initiaux du jeu
-angle_deg = 45  # angle de tir 
-power = 15  # m/s
-launched = False  # Vrai ou faux si le parachutiste est lancé ou non
-camera_x = 0  # Décalage horizontal de la caméra
-parachute_deployed = False  # Vrai ou faux si le parachute est déployé ou non
-
-# Position initiale du parachutiste (en pixels)
-x, y = 125, HEIGHT - 282
-vx, vy = 0, 0   # paramètres initiales de la vitesse sur les deux axes
 
 # Couleurs (tempo)
 WHITE = (255, 255, 255)
@@ -32,30 +17,37 @@ BLUE = (50, 100, 255)
 GREEN = (0, 255, 0)
 BLACK = (0, 0, 0)
 
+
 # Police et taille d'écriture (font, 24 pixels)
-font = pygame.font.SysFont(None, 24)
+
 
 # Dessin de la flèche qui représente la puissance du tir + son angle
 def draw_arrow(surface, x, y, angle_deg, power, camera_x):
-    angle_rad = math.radians(angle_deg)  # convertie l'angle en radians, nécessaire pour utiliser ensuite math.cos(angle)
+    angle_rad = math.radians(
+        angle_deg)  # convertie l'angle en radians, nécessaire pour utiliser ensuite math.cos(angle)
     length = power * 10  # Multipliée par 10 pour être visible à l'écran
     end_x = x + length * math.cos(angle_rad)  # Fin de la flèche en fonction de : longueur + origine + angle
     end_y = y - length * math.sin(angle_rad)  # Fin de la flèche en fonction de : longueur + origine + angle
-    pygame.draw.line(surface, RED, (x - camera_x, y), (end_x - camera_x, end_y), 4)  # Dessine un trait rouge entre (x; y) et (end_x; end_y)
+    pygame.draw.line(surface, RED, (x - camera_x, y), (end_x - camera_x, end_y),
+                     4)  # Dessine un trait rouge entre (x; y) et (end_x; end_y)
+
 
 # Dessin de la jauge indicatrice de la puissance du tir
 def draw_power_bar(surface, power):
     pygame.draw.rect(surface, BLACK, (50, HEIGHT - 40, 300, 20), 2)  # Dessine le contour de la jauge (un rectangle)
-    pygame.draw.rect(surface, GREEN, (50, HEIGHT - 40, power / 30 * 300, 20))  # Remplie la jauge en fonction de la puissance de tir
-        # On utilise une règle de 3, le maximum de puissance est 30 soit 300 pixels sur la jauge
+    pygame.draw.rect(surface, GREEN,
+                     (50, HEIGHT - 40, power / 30 * 300, 20))  # Remplie la jauge en fonction de la puissance de tir
+    # On utilise une règle de 3, le maximum de puissance est 30 soit 300 pixels sur la jauge
+
 
 # Met à jour régulièrement la physique du parachutiste pour recréer une chute réaliste
 def update_physics(x, y, vx, vy, dt, parachute):
+    global g, m, k  # On utilise les variables globales définies au début du code
     # Forces (x) : frottements (2e loi de Newton)
     ax = - (k / m) * vx
     # Forces (y) : poids + frottements (2e loi de Newton)
     ay = g - (k / m) * vy
-    if parachute == True :
+    if parachute == True:
         ax *= 5  # Amplification de la résistance de l'air sur l'axe x (à cause du parachute)
         ay *= 5  # Amplification de la résistance de l'air l'axe y (à cause du parachute)
 
@@ -73,68 +65,86 @@ def update_physics(x, y, vx, vy, dt, parachute):
 
 
 # Boucle principale
-running = True
-while running:
-    dt = clock.tick(60) / 1000  # en secondes
-    screen.blit(fond_busan, (0, 0))
+def lancement_joueur():
+    # Paramètres initiaux du jeu
+    angle_deg = 45  # angle de tir
+    power = 15  # m/s
+    launched = False  # Vrai ou faux si le parachutiste est lancé ou non
+    camera_x = 0  # Décalage horizontal de la caméra
+    parachute_deployed = False  # Vrai ou faux si le parachute est déployé ou non
 
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            running = False
+    # Position initiale du parachutiste (en pixels)
+    x, y = 125, HEIGHT - 282
+    vx, vy = 0, 0  # paramètres initiales de la vitesse sur les deux axes
+    global g, m, k
+    pygame.init()
+    screen = pygame.display.set_mode((WIDTH, HEIGHT))
+    pygame.display.set_caption("Equation trajectoire test")
+    clock = pygame.time.Clock()
+    fond_busan = pygame.image.load("assets/fondbusan2.webp")
+    perso = player.perso()
 
-    # Contrôles avant lancement
-    keys = pygame.key.get_pressed()
-    if not launched:
-        if keys[pygame.K_LEFT] and angle_deg > 0:    # Si le joueur presse la flèche directionnelle gauche
-            angle_deg -= 1
-        if keys[pygame.K_RIGHT] and angle_deg < 80:    # Si le joueur presse la flèche directionnelle droite
-            angle_deg += 1
-        if keys[pygame.K_UP] and power < 30:     # Si le joueur presse la flèche directionnelle haut
-            power += 0.5
-        if keys[pygame.K_DOWN] and power > 0:    # Si le joueur presse la flèche directionnelle bas
-            power -= 0.5
-        if keys[pygame.K_SPACE]:    # Si le joueur presse la touche espace
-            angle_rad = math.radians(angle_deg)
-            vx = power * math.cos(angle_rad)  # équations de la vitesse (physique)
-            vy = - power * math.sin(angle_rad)  # équations de la vitesse (physique)
-            launched = True   # Le parachutiste est maintenant lancé
-        if keys[pygame.K_ESCAPE]:
-            running = False
+    font = pygame.font.SysFont(None, 24)
+    running = True
+    while running:
+        dt = clock.tick(60) / 1000  # en secondes
+        screen.blit(fond_busan, (0, 0))
 
-    if launched and keys[pygame.K_p]:
-        parachute_deployed = True
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
 
-    # Mise à jour de la physique en temps réel
-    if launched:
-        x, y, vx, vy = update_physics(x, y, vx, vy, dt, parachute_deployed)  # Modifie la position du parachutiste
+        # Contrôles avant lancement
+        keys = pygame.key.get_pressed()
+        if not launched:
+            if keys[pygame.K_LEFT] and angle_deg > 0:  # Si le joueur presse la flèche directionnelle gauche
+                angle_deg -= 1
+            if keys[pygame.K_RIGHT] and angle_deg < 80:  # Si le joueur presse la flèche directionnelle droite
+                angle_deg += 1
+            if keys[pygame.K_UP] and power < 30:  # Si le joueur presse la flèche directionnelle haut
+                power += 0.5
+            if keys[pygame.K_DOWN] and power > 0:  # Si le joueur presse la flèche directionnelle bas
+                power -= 0.5
+            if keys[pygame.K_SPACE]:  # Si le joueur presse la touche espace
+                angle_rad = math.radians(angle_deg)
+                vx = power * math.cos(angle_rad)  # équations de la vitesse (physique)
+                vy = - power * math.sin(angle_rad)  # équations de la vitesse (physique)
+                launched = True  # Le parachutiste est maintenant lancé
+            if keys[pygame.K_ESCAPE]:
+                running = False
 
-        # Scroll horizontal : garde la caméra centrée sur le parachutiste
-        camera_x = x - WIDTH // 4
-        if camera_x < 0:
-            camera_x = 0  # Ne jamais décaler vers la gauche
+        if launched and keys[pygame.K_e]:
+            return x - camera_x, y
 
-    # Dessin de la flèche (symbolise la puissance et l'angle de tir)
-    if not launched:
-        draw_arrow(screen, x, y, angle_deg, power, camera_x)
-        draw_power_bar(screen, power)
-    pygame.draw.circle(screen, BLUE if not parachute_deployed else GREEN, (int(x - camera_x), int(y)), 10)
+        # Mise à jour de la physique en temps réel
+        if launched:
+            x, y, vx, vy = update_physics(x, y, vx, vy, dt, parachute_deployed)  # Modifie la position du parachutiste
 
-    mortier_img = pygame.image.load("assets\Mortier_petit.png")
-    screen.blit(mortier_img, (50,415))
-    
-    
-    # Affichage des commandes pour le joueur
-    txt = font.render(f"Angle : {angle_deg}° | Vitesse : {power:.1f} m/s", True, BLACK)
-    txt2 = font.render("ECHAP pour quitter", True, BLACK)
-    screen.blit(txt, (10, 10))
-    screen.blit(txt2, (10, 60))
-    if not launched:
-        screen.blit(font.render("ESPACE pour lancer", True, BLACK), (10, 35))
-    else:
-        screen.blit(font.render("P pour déployer le parachute", True, BLACK), (10, 35))
+            # Scroll horizontal : garde la caméra centrée sur le parachutiste
+            camera_x = x - WIDTH + 200
+            if camera_x < 0:
+                camera_x = 0  # Ne jamais décaler vers la gauche
 
-    
-    pygame.display.flip()
+        # Dessin de la flèche (symbolise la puissance et l'angle de tir)
+        if not launched:
+            draw_arrow(screen, x, y, angle_deg, power, camera_x)
+            draw_power_bar(screen, power)
+        screen.blit(perso, (int(x - camera_x), int(y)))
 
-pygame.quit()
-#avv
+        mortier_img = pygame.image.load("assets\Mortier_petit.png")
+        screen.blit(mortier_img, (50, 415))
+
+        # Affichage des commandes pour le joueur
+        txt = font.render(f"Angle : {angle_deg}° | Vitesse : {power:.1f} m/s", True, BLACK)
+        txt2 = font.render("ECHAP pour quitter", True, BLACK)
+        screen.blit(txt, (10, 10))
+        screen.blit(txt2, (10, 60))
+        if not launched:
+            screen.blit(font.render("ESPACE pour lancer", True, BLACK), (10, 35))
+        else:
+            screen.blit(font.render("P pour déployer le parachute", True, BLACK), (10, 35))
+
+        pygame.display.flip()
+
+    pygame.quit()
+    # avv

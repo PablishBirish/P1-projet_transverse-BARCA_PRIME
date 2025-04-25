@@ -1,4 +1,4 @@
-import pygame, sys, chute_libre, random, player
+import pygame, sys, chute_libre, random, player, Equation_Trajectoire
 from button import Button
 
 # permet initialiser
@@ -41,16 +41,20 @@ def show_black_screen(destination):
     dx, dy = WIDTH // 2, HEIGHT // 4
 
     while running:
-        if destination == "Busan":
+        if destination == "Busan" and first_run:
+            dx, dy = Equation_Trajectoire.lancement_joueur()
             gravite = 10
             name_obstacle = ["assets/obstacle1.png", "assets/obstacle2.png"]
-            SCREEN.blit(fond_busan, (0, 0))  # Affiche l'image de Busan
+            fond = fond_busan  # Affiche l'image de Busan
             jouer_musique(musique_busan)
-        else:
+        elif destination == "Moon" and first_run:
+            dx, dy = Equation_Trajectoire.lancement_joueur()
             gravite = 5
             name_obstacle = ["assets/obstacle_lune_1.png"]
+            fond = fond_moon  # Affiche l'image de la Lune
             SCREEN.blit(fond_moon, (0, 0))  # fond de la lune
 
+        SCREEN.blit(fond, (0, 0))
         perso = player.perso()
         SCREEN.blit(perso, (dx, dy))
 
@@ -212,4 +216,4 @@ def main_menu():
 # Lancer le menu
 main_menu()
 pygame.quit()
-#avv
+# av

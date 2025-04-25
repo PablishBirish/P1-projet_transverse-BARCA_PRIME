@@ -51,4 +51,4 @@ def display_obstacle(img):
         pos_x_obstacle = random.randint(0, 1280 - 100)
         obstacle_image = pygame.transform.scale(obstacle_image, (150, 150))
     return obstacle_image, pos_x_obstacle  # Retourner l'image et sa position
-#a
+#av

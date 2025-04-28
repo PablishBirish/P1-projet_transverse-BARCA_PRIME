@@ -1,7 +1,7 @@
 import pygame, sys, chute_libre, random
 from button import Button
 
-# Initialisation
+# Initialisation du projet
 pygame.init()
 pygame.mixer.init()
 

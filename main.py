@@ -5,7 +5,7 @@ from button import Button
 pygame.init()
 pygame.mixer.init()
 # Paramètres de la fenêtre
-WIDTH, HEIGHT = 1280, 720
+WIDTH, HEIGHT = 1280, 720 # dededede
 SCREEN = pygame.display.set_mode((WIDTH, HEIGHT))
 clock = pygame.time.Clock()
 pygame.display.set_caption("Menu")

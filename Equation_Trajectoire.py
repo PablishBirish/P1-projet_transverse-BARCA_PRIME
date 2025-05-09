@@ -1,4 +1,3 @@
-
 import pygame
 import math
 import player
@@ -132,7 +131,7 @@ def lancement_joueur():
             draw_power_bar(screen, power)
         screen.blit(perso, (int(x - camera_x), int(y)))
 
-        mortier_img = pygame.image.load("assets/Mortier_petit.png")
+        mortier_img = pygame.image.load("assets\Mortier_petit.png")
         screen.blit(mortier_img, (50, 415))
 
         # Affichage des commandes pour le joueur
@@ -143,11 +142,10 @@ def lancement_joueur():
         if not launched:
             screen.blit(font.render("ESPACE pour lancer", True, BLACK), (10, 35))
         else:
-            screen.blit(font.render("E pour déployer le parachute", True, BLACK), (10, 35))
+            screen.blit(font.render("P pour déployer le parachute", True, BLACK), (10, 35))
 
         pygame.display.flip()
 
     pygame.quit()
     # avv
-    #bvv
-    #vv
+    #1

@@ -15,7 +15,6 @@ pygame.display.set_caption("Menu")
 BG = pygame.image.load("assets/fond.png")
 fond_busan = pygame.image.load("assets/fondbusan2.webp")
 fond_option = pygame.image.load("assets/fond_option.jpg")
-
 # Musiques
 musique_menu = "assets/coco.mp3"
 musique_busan = "assets/Corail.mp3"

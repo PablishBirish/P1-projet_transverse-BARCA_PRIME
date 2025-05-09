@@ -33,9 +33,6 @@ class Player:
 
     def update(self):
         self.apply_gravity()
-
-
-
         self.check_ground_collision()
 
     def draw(self, screen):
@@ -55,3 +52,4 @@ def display_obstacle(img):
         obstacle_image = pygame.transform.scale(obstacle_image, (150, 150))
     return obstacle_image, pos_x_obstacle  # Retourner l'image et sa position
 #avv
+#1

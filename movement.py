@@ -73,4 +73,4 @@ while running:
         elif event.type == pygame.KEYUP:
             game.pressed[event.key] = False
 #avv
-#vvddd
+#1

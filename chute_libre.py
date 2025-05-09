@@ -33,6 +33,9 @@ class Player:
 
     def update(self):
         self.apply_gravity()
+
+
+
         self.check_ground_collision()
 
     def draw(self, screen):

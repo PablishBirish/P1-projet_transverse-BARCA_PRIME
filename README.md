@@ -8,15 +8,6 @@ Le gameplay se décompose en 2 phases principales :
   1. **Phase de Lancée** : Le joueur a la possibilité de jauger lui même la force et l'angle du lancer, il doit bien choisir vers où s’élancer car il devra par la suite esquiver les obstacles de la zone.
   3. **Phase de Descente** : Le joueur a été lancé et a ouvert son parachute, il doit à présent atteindre une cible au sol sain et sauf sous peine de Game Over.
 
-## Installation
-Avant toute exécution, veillez à bien avoir installé **Python 3.13** ainsi que la version correspondante du module **PyGame**.
-### > Python 3.13
-Avant d'installer PyGame, il est nécessaire d'installer la version 3.13 de Python.
-
-1. Rendez-vous sur le site officiel : https://www.python.org/downloads/
-2. Téléchargez la version 3.13 de Python
-
-### > PyGame
 
 ## Fonctionnalités
 ### Différents skins/tenues à porter

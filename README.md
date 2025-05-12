@@ -6,11 +6,15 @@ Le joueur incarne un parachutiste, qui s’élance dans le vide depuis un hélic
 
 Le gameplay se décompose en 2 phases principales : 
   1. **Phase de Lancée** : Le joueur a la possibilité de jauger lui même la force et l'angle du lancer, il doit bien choisir vers où s’élancer car il devra par la suite esquiver les obstacles de la zone.
+       Commandes :
+           - **Espace** pour lancer
+           - flèches directionnelles **gauche** et **droite** pour régler la vitesse initiale (de 0 à 30m/s)
+           - flèches directionnelles **haut** et **bas** pour régler l'angle de tir (0 à 80 degré)
+           - **E** pour ouvrir le parachute
   3. **Phase de Descente** : Le joueur a été lancé et a ouvert son parachute, il doit à présent atteindre une cible au sol sain et sauf sous peine de Game Over.
 
 
 ## Fonctionnalités
-### Différents skins/tenues à porter
 ### Différents monde où jouer
 Le joueur aura l'opportunité de jouer sur **3 cartes/mondes** différents :
 - Busan
